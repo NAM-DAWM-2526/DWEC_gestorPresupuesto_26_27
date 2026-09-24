@@ -1,1 +1,1 @@
-alert("Nebai Aldeguer Menchon")
+console.log("Nebai Aldeguer Menchon")
