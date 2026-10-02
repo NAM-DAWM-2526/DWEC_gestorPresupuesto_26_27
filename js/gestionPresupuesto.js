@@ -11,7 +11,6 @@ function actualizarPresupuesto(intro) {
     }
     else
     {
-        presupuesto = 0;
         console.log(`Error, el valor introducido es negativo o no es un numero`)
         return -1
     }
@@ -20,14 +19,15 @@ function actualizarPresupuesto(intro) {
 function mostrarPresupuesto() {
     return `Tu presupuesto actual es de ${presupuesto} €`
 }
-function CrearGasto(valor, descripcion){
-    this.descripcion = String(descripcion);
+function CrearGasto(descripcion, valor){
 
     if (typeof valor === "number" && valor >= 0) {
         this.valor = valor;
     } else {
         this.valor = 0;
     }
+
+    this.descripcion = String(descripcion);
 
     this.mostrarGasto = function() {
         return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
