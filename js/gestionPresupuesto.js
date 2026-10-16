@@ -91,13 +91,13 @@ function CrearGasto(descripcion, valor, fecha, ... etiquetas){
         let fecha = new Date(this.fecha).toISOString()
         switch(tipo){
             case "dia": 
-                fecha.substring(0,10)
+                fecha = fecha.substring(0,10)
                 break;
             case "mes":
-                fecha.substring(0,7)
+                fecha = fecha.substring(0,7)
                 break;
             case "anyo":
-                fecha.substring(0,4)
+                fecha = fecha.substring(0,4)
                 break;
             default:
                 fecha = new Date()
@@ -134,7 +134,27 @@ function calcularBalance (){
     return presupuesto - calcularTotalGastos();
 }
 function filtrarGastos({fechaDesde, fechaHasta, valorMinimo, valorMaximo, descripcionContiene, etiquetasTiene}){
+    let gastosFiltrados = gastos;
     
+    if(fechaDesde !== undefined){
+        gastosFiltrados = gastosFiltrados.filter(gasto => gasto.fecha >= Date.parse(fechaDesde))
+    }
+    if(fechaHasta !== undefined){
+        gastosFiltrados = gastosFiltrados.filter(gasto => gasto.fecha <= Date.parse(fechaHasta))
+    }
+    if(valorMinimo !== undefined){
+        gastosFiltrados = gastosFiltrados.filter(gasto => gasto.valor >= valorMinimo)
+    }
+    if(valorMaximo !== undefined){
+        gastosFiltrados = gastosFiltrados.filter(gasto => gasto.valor <= valorMaximo)
+    }
+    if(descripcionContiene !== undefined){
+        gastosFiltrados = gastosFiltrados.filter(gasto => gasto.descripcion.toLowerCase().includes(descripcionContiene.toLowerCase()))
+    }
+    if(etiquetasTiene !== undefined){
+        
+    }
+    return gastosFiltrados
 }
 function agruparGastos(){
 
