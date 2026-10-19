@@ -151,14 +151,38 @@ function filtrarGastos({fechaDesde, fechaHasta, valorMinimo, valorMaximo, descri
     if(descripcionContiene !== undefined){
         gastosFiltrados = gastosFiltrados.filter(gasto => gasto.descripcion.toLowerCase().includes(descripcionContiene.toLowerCase()))
     }
-    if(etiquetasTiene !== undefined){
-        
-    }
+    if (etiquetasTiene !== undefined && etiquetasTiene.length > 0) {
+        gastosFiltrados = gastosFiltrados.filter(gasto => etiquetasTiene.some(etiqueta => gasto.etiquetas.includes(etiqueta))
+    );
+}
     return gastosFiltrados
 }
-function agruparGastos(){
 
+    
+function agruparGastos(periodo = "mes", etiquetas = [], fechaDesde, fechaHasta = new Date()) {
+
+    let gastosFiltrados = filtrarGastos({
+        fechaDesde: fechaDesde,
+        fechaHasta: fechaHasta,
+        etiquetasTiene: etiquetas
+    });
+
+    return gastosFiltrados.reduce((acc, gasto) => {
+
+        let clave = gasto.obtenerPeriodoAgrupacion(periodo);
+
+        if (acc[clave] === undefined) {
+            acc[clave] = 0;
+        }
+
+        acc[clave] += gasto.valor;
+
+        return acc;
+
+    }, {});
 }
+
+
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
 // Las funciones y objetos deben tener los nombres que se indican en el enunciado
 // Si al obtener el código de una práctica se genera un conflicto, por favor incluye todo el código que aparece aquí debajo
