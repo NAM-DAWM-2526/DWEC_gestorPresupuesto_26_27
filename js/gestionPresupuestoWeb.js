@@ -3,7 +3,7 @@ function mostrarDatoEnId(idElemento, valor){
     elemento.textContent = valor;
 }
 
-function mostrarGastoWeb(){
+function mostrarGastoWeb(idElemento, gasto){
 
 }
 
