@@ -33,6 +33,9 @@ function mostrarGastoWeb(idElemento, gasto){
     divGasto.append(divFecha)
     divGasto.append(divValor)
     divGasto.append(divEtiqueta)
+
+    let elemento = document.getElementById(idElemento)
+    elemento.append(divGasto)
 }
 
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
@@ -41,28 +44,26 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo){
     
     let h1 = document.createElement("h1")
     h1.textContent = `Gastos agrupados por ${periodo}`
+    divAgrupacion.append(h1)
     
-    for(1 of 1){
+    for(let [clave,valor] of Object.entries(agrup)){
         let divAgruDato = document.createElement("div")
-        divAgrupacion.className = "agrupacion-dato"
+        divAgruDato.className = "agrupacion-dato"
 
         let spanClave = document.createElement("span")
-        divAgrupacion.className = "agrupacion-dato-clave"
-        spanClave.textContent = ""
+        spanClave.className = "agrupacion-dato-clave"
+        spanClave.textContent = clave
 
         let spanValor = document.createElement("span")
-        divAgrupacion.className = "agrupacion-dato-valor"
-        spanValor.textContent = ""
+        spanValor.className = "agrupacion-dato-valor"
+        spanValor.textContent = valor
+
+        divAgruDato.append(spanClave)
+        divAgruDato.append(spanValor)
+        divAgrupacion.append(divAgruDato)
     }
-    
-    /*switch(periodo){
-        case "dia":
-            break;
-        case "mes":
-            break;
-        case "anyo":
-            break;
-    }*/
+    let elemento = document.getElementById(idElemento)
+    elemento.append(divAgrupacion)
 }
 export   {
     mostrarDatoEnId,
