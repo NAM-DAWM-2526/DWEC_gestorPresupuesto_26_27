@@ -14,7 +14,7 @@ function mostrarGastoWeb(idElemento, gasto){
 
     let divFecha = document.createElement("div")
     divFecha.className = "gasto-fecha"
-    divFecha.textContent = gasto.fecha
+    divFecha.textContent = new Date(gasto.fecha).toLocaleDateString();
 
     let divValor = document.createElement("div")
     divValor.className = "gasto-valor"
