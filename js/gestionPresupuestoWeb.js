@@ -21,10 +21,11 @@ function mostrarGastoWeb(idElemento, gasto){
     divValor.textContent = gasto.valor
 
     let divEtiqueta = document.createElement("div")
-    divEtiqueta.className = "gasto-etiqueta"
+    divEtiqueta.className = "gasto-etiquetas"
 
-    for(etiqueta of gasto.etiquetas){
+    for(let etiqueta of gasto.etiquetas){
         let spanEtiqueta = document.createElement("span")
+        spanEtiqueta.className = "gasto-etiquetas-etiqueta"
         spanEtiqueta.textContent = etiqueta
         divEtiqueta.append(spanEtiqueta)
     }
