@@ -1,6 +1,16 @@
+import * as gestionPresupuesto from './gestionPresupuesto.js';
+
 function mostrarDatoEnId(idElemento, valor){
     let elemento = document.getElementById(idElemento)
     elemento.textContent = valor;
+}
+
+function repintar(){
+    mostrarDatoEnId("presupuesto", gestionPresupuesto.mostrarPresupuesto)
+    mostrarDatoEnId("gastos-totales", gestionPresupuesto.calcularTotalGastos)
+    mostrarDatoEnId("balance-total", gestionPresupuesto.calcularBalance)
+    //BorrarListadoGastos
+    //ListadoGastos
 }
 
 function mostrarGastoWeb(idElemento, gasto){
