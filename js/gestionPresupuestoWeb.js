@@ -45,10 +45,11 @@ function nuevoGastoWeb(){
 
     let etiquetas = etiquetasPrompt.split(',');
 
-    let gasto = gestionPresupuesto.CrearGasto(descripcion, valor, fecha, ...etiquetas);
+    let gasto = new gestionPresupuesto.CrearGasto(descripcion, valor, fecha, ...etiquetas);
     
     gestionPresupuesto.anyadirGasto(gasto);
 
+    
     repintar();
 }   
 
@@ -77,7 +78,7 @@ function EditarHandle() {
 
 function BorrarHandle() {
     this.handleEvent = function () {
-        gestionPresupuesto.borrarGasto(this.gasto);
+        gestionPresupuesto.borrarGasto(this.gasto.id);
 
         repintar();
     }
