@@ -59,7 +59,7 @@ function EditarHandle() {
     this.handleEvent = function () {
         let descripcion = prompt("Introduce la nueva descripcion: ", this.gasto.descripcion);
         let valor = prompt("Introduce el nuevo valor: ", this.gasto.valor);
-        let fecha = prompt("Introduce la nueva fecha: ", this.gasto.fecha);
+        let fecha = prompt("Introduce la nueva fecha: ", new Date(this.gasto.fecha).toISOString().slice(0, 10));
         let etiquetasPrompt = prompt("Introduce las etiquetas: ", this.gasto.etiquetas.join(","));
 
         valor = parseFloat(valor);
@@ -81,6 +81,14 @@ function BorrarHandle() {
 
         repintar();
     }
+}
+
+function BorrarEtiquetasHandle() {
+    this.handleEvent = function () {
+        this.gasto.borrarEtiquetas(this.etiqueta);
+
+        repintar();
+    };
 }
 
 function mostrarGastoWeb(idElemento, gasto){
