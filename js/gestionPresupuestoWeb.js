@@ -115,6 +115,12 @@ function mostrarGastoWeb(idElemento, gasto){
         let spanEtiqueta = document.createElement("span")
         spanEtiqueta.className = "gasto-etiquetas-etiqueta"
         spanEtiqueta.textContent = etiqueta
+
+        let borrarEtiqueta = new BorrarEtiquetasHandle();
+        borrarEtiqueta.gasto = gasto;
+        borrarEtiqueta.etiqueta = etiqueta;
+        spanEtiqueta.addEventListener("click", borrarEtiqueta);
+
         divEtiqueta.append(spanEtiqueta)
     }
 
