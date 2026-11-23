@@ -55,7 +55,23 @@ function nuevoGastoWeb(){
 let botonAnyadir = document.getElementById("anyadirgasto");
 botonAnyadir.addEventListener("click", nuevoGastoWeb);
 
+function EditarHandle() {
+    this.handleEvent = function () {
+        let descripcion = prompt("Introduce la nueva descripcion: ", this.gasto.descripcion);
+        let valor = prompt("Introduce el nuevo valor: ", this.gasto.valor);
+        let fecha = prompt("Introduce la nueva fecha: ", this.gasto.fecha);
+        let etiquetasPrompt = prompt("Introduce las etiquetas: ", this.gasto.etiquetas.join(","));
 
+        let etiquetas = etiquetasPrompt.split(',');
+
+        this.gasto.actualizarDescripcion(descripcion);
+        this.gasto.actualizarValor(valor);
+        this.gasto.actualizarFecha(fecha);
+        this.gasto.anyadirEtiquetas(...etiquetas);
+
+        repintar();
+    }
+}
 
 function mostrarGastoWeb(idElemento, gasto){
     let divGasto = document.createElement("div")
