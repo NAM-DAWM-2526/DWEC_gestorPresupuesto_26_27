@@ -23,7 +23,7 @@ function repintar(){
 function actualizarPresupuestoWeb(){
     let presupuesto = prompt("Introduce el nuevo presupuesto: ");
     
-    parseInt(presupuesto);
+    presupuesto = parseFloat(presupuesto);
 
     gestionPresupuesto.actualizarPresupuesto(presupuesto);
 
@@ -39,13 +39,21 @@ function nuevoGastoWeb(){
     let descripcion = prompt("Introduce la descripcion: ");
     let valor = prompt("Introduce el valor: ");
     let fecha = prompt("Introduce la fecha: ");
-    let etiquetas = prompt("Introduce las etiquetas: ");
+    let etiquetasPrompt = prompt("Introduce las etiquetas: ");
 
-    parseInt(valor);
-}
+    valor = parseFloat(valor);
 
-let botonActualizar = document.getElementById("actualizarpresupuesto");
-botonActualizar.addEventListener("click", actualizarPresupuestoWeb);
+    let etiquetas = etiquetasPrompt.split(',');
+
+    let gasto = gestionPresupuesto.CrearGasto(descripcion, valor, fecha, ...etiquetas);
+    
+    gestionPresupuesto.anyadirGasto(gasto);
+
+    repintar();
+}   
+
+let botonAnyadir = document.getElementById("anyadirgasto");
+botonAnyadir.addEventListener("click", nuevoGastoWeb);
 
 
 
