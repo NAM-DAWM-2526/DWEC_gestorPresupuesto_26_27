@@ -7,10 +7,17 @@ function mostrarDatoEnId(idElemento, valor){
 
 function repintar(){
     mostrarDatoEnId("presupuesto", gestionPresupuesto.mostrarPresupuesto)
+
     mostrarDatoEnId("gastos-totales", gestionPresupuesto.calcularTotalGastos)
+
     mostrarDatoEnId("balance-total", gestionPresupuesto.calcularBalance)
-    //BorrarListadoGastos
-    //ListadoGastos
+
+    document.getElementById("listado-gastos-completo").innerHTML = "";
+    
+    let gastos = gestionPresupuesto.listarGastos();
+    for (let gasto of gastos) {
+        mostrarGastoWeb("listado-gastos-completo", gasto);
+    }
 }
 
 function mostrarGastoWeb(idElemento, gasto){
