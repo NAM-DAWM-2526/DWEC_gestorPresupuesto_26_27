@@ -129,6 +129,27 @@ function mostrarGastoWeb(idElemento, gasto){
     divGasto.append(divValor)
     divGasto.append(divEtiqueta)
 
+    let botonEditar = document.createElement("button");
+    botonEditar.type = "button";
+    botonEditar.className = "gasto-editar";
+    botonEditar.textContent = "Editar";
+
+    let editar = new EditarHandle();
+    editar.gasto = gasto;
+    botonEditar.addEventListener("click", editar);
+    divGasto.append(botonEditar);
+
+    
+    let botonBorrar = document.createElement("button");
+    botonBorrar.type = "button";
+    botonBorrar.className = "gasto-borrar";
+    botonBorrar.textContent = "Borrar";
+
+    let borrar = new BorrarHandle();
+    borrar.gasto = gasto;
+    botonBorrar.addEventListener("click", borrar);
+    divGasto.append(botonBorrar);
+
     let elemento = document.getElementById(idElemento)
     elemento.append(divGasto)
 }
