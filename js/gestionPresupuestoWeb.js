@@ -1,24 +1,53 @@
 import * as gestionPresupuesto from './gestionPresupuesto.js';
 
 function mostrarDatoEnId(idElemento, valor){
-    let elemento = document.getElementById(idElemento)
+    let elemento = document.getElementById(idElemento);
     elemento.textContent = valor;
 }
 
 function repintar(){
-    mostrarDatoEnId("presupuesto", gestionPresupuesto.mostrarPresupuesto)
+    mostrarDatoEnId("presupuesto", gestionPresupuesto.mostrarPresupuesto());
 
-    mostrarDatoEnId("gastos-totales", gestionPresupuesto.calcularTotalGastos)
+    mostrarDatoEnId("gastos-totales", gestionPresupuesto.calcularTotalGastos());
 
-    mostrarDatoEnId("balance-total", gestionPresupuesto.calcularBalance)
+    mostrarDatoEnId("balance-total", gestionPresupuesto.calcularBalance());
 
     document.getElementById("listado-gastos-completo").innerHTML = "";
-    
+
     let gastos = gestionPresupuesto.listarGastos();
     for (let gasto of gastos) {
         mostrarGastoWeb("listado-gastos-completo", gasto);
     }
 }
+
+function actualizarPresupuestoWeb(){
+    let presupuesto = prompt("Introduce el nuevo presupuesto: ");
+    
+    parseInt(presupuesto);
+
+    gestionPresupuesto.actualizarPresupuesto(presupuesto);
+
+    repintar();
+}
+
+let botonActualizar = document.getElementById("actualizarpresupuesto");
+botonActualizar.addEventListener("click", actualizarPresupuestoWeb);
+
+
+
+function nuevoGastoWeb(){
+    let descripcion = prompt("Introduce la descripcion: ");
+    let valor = prompt("Introduce el valor: ");
+    let fecha = prompt("Introduce la fecha: ");
+    let etiquetas = prompt("Introduce las etiquetas: ");
+
+    parseInt(valor);
+}
+
+let botonActualizar = document.getElementById("actualizarpresupuesto");
+botonActualizar.addEventListener("click", actualizarPresupuestoWeb);
+
+
 
 function mostrarGastoWeb(idElemento, gasto){
     let divGasto = document.createElement("div")
