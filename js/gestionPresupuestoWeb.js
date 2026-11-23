@@ -62,12 +62,22 @@ function EditarHandle() {
         let fecha = prompt("Introduce la nueva fecha: ", this.gasto.fecha);
         let etiquetasPrompt = prompt("Introduce las etiquetas: ", this.gasto.etiquetas.join(","));
 
+        valor = parseFloat(valor);
+
         let etiquetas = etiquetasPrompt.split(',');
 
         this.gasto.actualizarDescripcion(descripcion);
         this.gasto.actualizarValor(valor);
         this.gasto.actualizarFecha(fecha);
         this.gasto.anyadirEtiquetas(...etiquetas);
+
+        repintar();
+    }
+}
+
+function BorrarHandle() {
+    this.handleEvent = function () {
+        gestionPresupuesto.borrarGasto(this.gasto);
 
         repintar();
     }
